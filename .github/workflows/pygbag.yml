@@ -16,7 +16,7 @@ jobs:
         pip install pygbag
     - name: Build
       run: |
-        pygbag --build main.py
+      pygbag .
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
       with:
