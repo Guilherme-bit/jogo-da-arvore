@@ -1,6 +1,10 @@
 name: Pygbag Build
 on: [push]
 
+permissions:
+  contents: write
+  pages: write
+
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
@@ -16,9 +20,10 @@ jobs:
         pip install pygbag
     - name: Build
       run: |
-        pygbag --build .
+        pygbag --build --app main .
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./build/web
+        publish_dir: build/web
+        force_orphan: true
